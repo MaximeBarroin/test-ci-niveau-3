@@ -7,7 +7,7 @@ jobs:
       matrix:
         python-version: [3.9.0]
     runs-on: ubuntu-latest
-  
+
     steps:
       - uses: actions/checkout@master
       - uses: actions/setup-python@v2
@@ -15,8 +15,8 @@ jobs:
           python-version: ${{ matrix.python-version }}
       - name: Install dependencies
         run: |
-            python -m pip install --upgrade pip
-            pip install -r requirements.txt
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
       - name: Run unit tests
         run: python -m pytest --import-mode=append tests/
       - name: run report html
@@ -26,3 +26,14 @@ jobs:
         with:
           name: code-coverage-report
           path: ./report/**
+
+  pull-request:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: pull-request-action
+        uses: vsoch/pull-request-action@master
+        env:
+          PULL_REQUEST_BRANCH: "main"
+          PULL_REQUEST_TITLE: "## Go to pull"
+          PULL_REQUEST_BODY: " ### Coucou "
