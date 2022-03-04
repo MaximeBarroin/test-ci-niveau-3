@@ -34,6 +34,7 @@ jobs:
       - name: pull-request-action
         uses: vsoch/pull-request-action@master
         env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
           PULL_REQUEST_BRANCH: "main"
           PULL_REQUEST_TITLE: "## Go to pull"
           PULL_REQUEST_BODY: " ### Coucou "
