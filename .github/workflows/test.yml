@@ -9,13 +9,12 @@ jobs:
     runs-on: ubuntu-latest
   
     steps:
-      - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v1
-        with:
-          python-version: ${{ matrix.python-version }}
       - uses: actions/checkout@master # THIS IS IMPORTANT
+      - uses: actions/setup-python@v2 # THIS IS IMPORTANT
+        with:
+          python-version: ${{matrix.python-version}}
       - name: Test
         uses: onichandame/python-test-action@master
         with:
-          deps_list: 'requirement.txt'
+          deps_list: 'requirements.txt'
         
