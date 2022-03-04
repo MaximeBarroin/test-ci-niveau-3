@@ -17,5 +17,5 @@ jobs:
       - name: Test
         uses: onichandame/python-test-action@master
         with:
-          deps_list: 'requirement'
+          deps_list: 'requirement.txt'
         
